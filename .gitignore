@@ -43,3 +43,6 @@ next-env.d.ts
 # local env
 .env*
 !.env.example
+
+# Inspo MCP reference source, kept locally only (third-party, licence unconfirmed)
+/references/

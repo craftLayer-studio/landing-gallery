@@ -1,0 +1,73 @@
+/* Field Notes Weekly tokens. Scoped to .fn-root. */
+.fn-root {
+  --fn-paper: #f5efe1;
+  --fn-paper-deep: #ebe3cf;
+  --fn-ink: #1d1a15;
+  --fn-muted: #574f43;
+  --fn-rule: #cbbfa6;
+  --fn-error: #9b2c1f;
+  --fn-mark: #f3d54e; /* marker yellow: only ever behind ink text */
+  background:
+    radial-gradient(circle at 1px 1px, color-mix(in oklab, var(--fn-ink) 7%, transparent) 1px, transparent 0) 0 0 / 22px 22px,
+    var(--fn-paper);
+  color: var(--fn-ink);
+  font-family: var(--font-fn-serif), Georgia, 'Times New Roman', serif;
+  font-optical-sizing: auto;
+}
+.fn-root .fn-mono {
+  font-family: var(--font-fn-mono), ui-monospace, 'SFMono-Regular', Menlo, monospace;
+}
+.fn-root .fn-meta {
+  font-family: var(--font-fn-mono), ui-monospace, 'SFMono-Regular', Menlo, monospace;
+  font-size: 0.75rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--fn-muted);
+}
+/* Hand-drawn marker highlight behind a word. */
+.fn-root .fn-mark {
+  background-image: linear-gradient(100deg, transparent 0.2em, var(--fn-mark) 0.25em, var(--fn-mark) calc(100% - 0.3em), transparent calc(100% - 0.2em));
+  background-size: 100% 0.62em;
+  background-position: 0 88%;
+  background-repeat: no-repeat;
+  padding: 0 0.08em;
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .fn-root .fn-mark--draw {
+    animation: fn-draw 1.1s 0.25s cubic-bezier(0.3, 0.7, 0.2, 1) both;
+  }
+}
+@keyframes fn-draw {
+  from { background-size: 0% 0.62em; }
+  to { background-size: 100% 0.62em; }
+}
+.fn-root a.fn-link {
+  text-decoration: underline;
+  text-decoration-thickness: 0.12em;
+  text-decoration-color: var(--fn-mark);
+  text-underline-offset: 0.2em;
+}
+.fn-root a.fn-link:hover {
+  background: var(--fn-mark);
+}
+.fn-root :focus-visible {
+  outline: 2px solid var(--fn-ink);
+  outline-offset: 3px;
+  box-shadow: 0 0 0 6px var(--fn-mark);
+}
+.fn-root [id] {
+  scroll-margin-top: 1.5rem;
+}
+.fn-root ::selection {
+  background: var(--fn-mark);
+  color: var(--fn-ink);
+}
+.fn-root .fn-dropcap::first-letter {
+  float: left;
+  font-size: 3.6em;
+  line-height: 0.85;
+  padding: 0.06em 0.1em 0 0;
+  font-weight: 600;
+}

@@ -4,8 +4,8 @@ import {STUDIO_URL} from '@/lib/paths';
 /** Required on every page: these are fictional brands, not clients. */
 export function ConceptBar({brand}: {brand: string}) {
   return (
-    <div
-      role="note"
+    // A labelled <aside> is a landmark, so the notice is not orphaned content (axe "region").
+    <aside
       aria-label="Concept demo notice"
       className="flex flex-wrap items-center gap-x-3.5 gap-y-2 bg-[#101828] px-4 py-2 text-[13px] leading-snug font-medium text-[#e4e7ec] sm:px-10"
       style={{fontFamily: "ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif"}}
@@ -23,6 +23,6 @@ export function ConceptBar({brand}: {brand: string}) {
       <Link href="/" className="text-white underline underline-offset-2">
         All landing pages
       </Link>
-    </div>
+    </aside>
   );
 }

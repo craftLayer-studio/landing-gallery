@@ -1,0 +1,74 @@
+/* Kiln tokens: warm near-black ground, bone type, ember accent. */
+.kn-root {
+  --kn-ground: #120e0b;
+  --kn-surface: #1c1612;
+  --kn-bone: #f2e9db;
+  --kn-muted: #b8aa96;
+  --kn-rule: #3b3028;
+  --kn-ember: #ff5b1f;
+  --kn-amber: #ffb547;
+  --kn-ink: #160d07;
+  background: var(--kn-ground);
+  color: var(--kn-bone);
+  font-family: var(--kn-font-sans), ui-sans-serif, system-ui, sans-serif;
+}
+.kn-root .kn-display {
+  font-family: var(--kn-font-display), 'Arial Black', sans-serif;
+  font-weight: 400;
+}
+.kn-root .kn-mono {
+  font-family: var(--kn-font-mono), ui-monospace, monospace;
+}
+.kn-root :focus-visible {
+  outline: 2px solid var(--kn-amber);
+  outline-offset: 3px;
+}
+.kn-root ::selection {
+  background: var(--kn-ember);
+  color: var(--kn-ink);
+}
+
+/* Word-as-art: the word fills the width and glows from amber to ember. */
+.kn-word {
+  font-size: clamp(5.5rem, 36.5vw, 38rem);
+  line-height: 0.8;
+  letter-spacing: -0.045em;
+  background: linear-gradient(180deg, var(--kn-amber) 0%, var(--kn-ember) 55%, #b8300c 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Marquee CTA: pauses on hover or keyboard focus, static under reduced motion. */
+.kn-marquee-track {
+  animation: kn-marquee 26s linear infinite;
+}
+.kn-marquee:hover .kn-marquee-track,
+.kn-marquee:focus-visible .kn-marquee-track {
+  animation-play-state: paused;
+}
+@keyframes kn-marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-33.3333%);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .kn-marquee-track {
+    animation: none !important;
+    transform: none !important;
+    width: 100% !important;
+    justify-content: center;
+    white-space: normal !important;
+  }
+  .kn-marquee-copy + .kn-marquee-copy,
+  .kn-marquee-dup {
+    display: none;
+  }
+  .kn-marquee {
+    mask-image: none !important;
+    -webkit-mask-image: none !important;
+  }
+}

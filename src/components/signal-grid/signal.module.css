@@ -1,0 +1,92 @@
+/* Signal Grid: page-scoped tokens. Near-black, signal orange, mono annotations. */
+/* Layered so Tailwind utilities can override these defaults. */
+@layer components {
+.root {
+  --bg: #0b0c0e;
+  --surface: #121418;
+  --surface-2: #191c21;
+  --line: #2a2e35;
+  --line-2: #3a3f48;
+  --fg: #eceef1;
+  --muted: #a3a9b3;
+  --accent: #ff6b1f;
+  --accent-soft: #ff8a4c;
+  --accent-ink: #0b0c0e;
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--sg-display), ui-sans-serif, system-ui, sans-serif;
+  color-scheme: dark;
+}
+
+.root :where(a, button, input, select, textarea, summary, [tabindex]):focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+.onAccent :where(a, button, input, summary):focus-visible {
+  outline-color: var(--accent-ink);
+}
+
+.mono {
+  font-family: var(--sg-mono), ui-monospace, 'SFMono-Regular', monospace;
+}
+
+.meta {
+  font-family: var(--sg-mono), ui-monospace, 'SFMono-Regular', monospace;
+  font-size: 11.5px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.grid {
+  background-image:
+    linear-gradient(to right, rgb(255 255 255 / 0.045) 1px, transparent 1px),
+    linear-gradient(to bottom, rgb(255 255 255 / 0.045) 1px, transparent 1px);
+  background-size: 56px 56px;
+}
+
+.trace {
+  stroke-dasharray: 2400;
+  stroke-dashoffset: 2400;
+  animation: trace 3.2s cubic-bezier(0.3, 0.6, 0.2, 1) 0.2s forwards;
+}
+
+.pulse {
+  animation: pulse 2.4s ease-in-out infinite;
+}
+
+@keyframes trace {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.35;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .trace {
+    animation: none;
+    stroke-dashoffset: 0;
+  }
+  .pulse {
+    animation: none;
+  }
+}
+
+/* Accordion: hide the native marker, keep native semantics. */
+.summary {
+  list-style: none;
+}
+.summary::-webkit-details-marker {
+  display: none;
+}
+}

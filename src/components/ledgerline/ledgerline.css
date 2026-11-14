@@ -1,0 +1,40 @@
+/* Ledgerline tokens: light paper, ink type, one signal-green accent. */
+.ll-root {
+  --ll-paper: #f5f3ec;
+  --ll-paper-2: #ece8dc;
+  --ll-ink: #16191d;
+  --ll-muted: #565c63;
+  --ll-rule: #d6d1c3;
+  --ll-rule-strong: #16191d;
+  --ll-accent: #0b6b41;
+  --ll-accent-soft: #dcebe1;
+  --ll-error: #a3201b;
+  background: var(--ll-paper);
+  color: var(--ll-ink);
+  font-family: var(--ll-font-sans), ui-sans-serif, system-ui, sans-serif;
+  font-feature-settings: 'tnum' 1;
+}
+.ll-root .ll-mono {
+  font-family: var(--ll-font-mono), ui-monospace, monospace;
+}
+.ll-root :focus-visible {
+  outline: 2px solid var(--ll-accent);
+  outline-offset: 3px;
+}
+.ll-root ::selection {
+  background: var(--ll-accent);
+  color: #fff;
+}
+/* Faint ledger ruling behind the hero. */
+.ll-ruled {
+  background-image: repeating-linear-gradient(
+    to bottom,
+    transparent 0,
+    transparent 39px,
+    color-mix(in oklab, var(--ll-ink) 7%, transparent) 39px,
+    color-mix(in oklab, var(--ll-ink) 7%, transparent) 40px
+  );
+}
+.ll-root input[type='number']::-webkit-inner-spin-button {
+  opacity: 1;
+}

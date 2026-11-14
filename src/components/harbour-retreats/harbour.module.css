@@ -1,0 +1,100 @@
+/* Harbour Retreats: page-scoped tokens. Sea fog, salt white, harbour blue, rust. */
+/* Layered so Tailwind utilities can override these defaults. */
+@layer components {
+.root {
+  --salt: #f4f2ec;
+  --fog: #e4e6e2;
+  --fog-2: #cfd5d3;
+  --ink: #17232c;
+  --muted: #4d5b64;
+  --harbour: #143049;
+  --harbour-2: #1f4766;
+  --rust: #984721;
+  --brass: #c49548;
+  --rule: #c3c9c6;
+  background: var(--salt);
+  color: var(--ink);
+  font-family: var(--hr-sans), ui-sans-serif, system-ui, sans-serif;
+}
+
+.root :where(a, button, input, select, textarea, summary, [tabindex]):focus-visible {
+  outline: 2px solid var(--rust);
+  outline-offset: 3px;
+}
+
+.onDark :where(a, button, input, select, textarea, summary, [tabindex]):focus-visible {
+  outline-color: var(--brass);
+}
+
+.display {
+  font-family: var(--hr-display), Georgia, 'Times New Roman', serif;
+  font-optical-sizing: auto;
+}
+
+.mono {
+  font-family: var(--hr-mono), ui-monospace, 'SFMono-Regular', monospace;
+}
+
+.meta {
+  font-family: var(--hr-mono), ui-monospace, 'SFMono-Regular', monospace;
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.onDark .meta {
+  color: #b9c6cf;
+}
+
+.drift {
+  animation: drift 38s ease-in-out infinite alternate;
+}
+
+.beam {
+  transform-origin: 50% 50%;
+  animation: beam 9s ease-in-out infinite;
+}
+
+@keyframes drift {
+  from {
+    transform: translateX(-3%);
+  }
+  to {
+    transform: translateX(3%);
+  }
+}
+
+@keyframes beam {
+  0%,
+  100% {
+    opacity: 0.15;
+  }
+  50% {
+    opacity: 0.55;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .drift,
+  .beam {
+    animation: none;
+  }
+}
+
+.field {
+  width: 100%;
+  min-height: 2.875rem;
+  border: 1px solid #7d8a91;
+  background: #fbfaf7;
+  padding: 0.5rem 0.75rem;
+  font-size: 1rem;
+  color: var(--ink);
+  border-radius: 0;
+}
+
+.field[aria-invalid='true'] {
+  border-color: var(--rust);
+  border-width: 2px;
+}
+}

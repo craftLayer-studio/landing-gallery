@@ -1,0 +1,200 @@
+/* Atelier Nord tokens. Scoped to .an-root so nothing leaks into other pages. */
+.an-root {
+  --an-birch: #f4efe6;
+  --an-oat: #e9e0d1;
+  --an-sand: #d7ccb9;
+  --an-wood: #c4a272;
+  --an-wood-deep: #9c7a4d;
+  --an-ink: #23211e;
+  --an-muted: #5c554c;
+  --an-rule: #cfc4b1;
+  --an-accent: #8c2d3a; /* lingonberry */
+  --an-accent-deep: #6e1f2b;
+  --an-accent-ink: #f4efe6;
+  background: var(--an-birch);
+  color: var(--an-ink);
+  font-family: var(--font-an-sans), ui-sans-serif, system-ui, sans-serif;
+}
+.an-root .an-display {
+  font-family: var(--font-an-display), Georgia, 'Times New Roman', serif;
+  font-weight: 400;
+}
+.an-root .an-meta {
+  font-size: 0.72rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: var(--an-muted);
+}
+.an-root :focus-visible {
+  outline: 2px solid var(--an-accent);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+.an-root .an-dark :focus-visible {
+  outline-color: var(--an-birch);
+}
+.an-root [id] {
+  scroll-margin-top: 5rem;
+}
+.an-root ::selection {
+  background: var(--an-accent);
+  color: var(--an-accent-ink);
+}
+
+/* Hero panel: pure CSS composition (no imagery). */
+.an-panel {
+  position: relative;
+  overflow: hidden;
+  background:
+    radial-gradient(110% 70% at 100% 0%, color-mix(in oklab, var(--an-accent) 22%, var(--an-oat)), transparent 62%),
+    linear-gradient(180deg, var(--an-oat) 0%, color-mix(in oklab, var(--an-oat) 70%, var(--an-sand)) 100%);
+}
+.an-panel__floor {
+  position: absolute;
+  inset: 72% 0 0 0;
+  background: linear-gradient(180deg, color-mix(in oklab, var(--an-sand) 80%, var(--an-wood)), var(--an-sand));
+  border-top: 1px solid color-mix(in oklab, var(--an-ink) 18%, transparent);
+}
+.an-panel__window {
+  position: absolute;
+  left: 16%;
+  top: 11%;
+  width: 34%;
+  height: 61%;
+  border-radius: 999px 999px 0 0;
+  background:
+    linear-gradient(90deg, transparent calc(50% - 2px), var(--an-oat) calc(50% - 2px), var(--an-oat) calc(50% + 2px), transparent calc(50% + 2px)),
+    linear-gradient(180deg, transparent 44%, var(--an-oat) 44%, var(--an-oat) calc(44% + 4px), transparent calc(44% + 4px)),
+    linear-gradient(180deg, #fbf8f2 0%, color-mix(in oklab, #fbf8f2 70%, var(--an-accent)) 140%);
+  box-shadow:
+    inset 0 0 0 6px var(--an-oat),
+    0 0 0 1px color-mix(in oklab, var(--an-ink) 14%, transparent);
+}
+.an-panel__light {
+  position: absolute;
+  left: 22%;
+  top: 72%;
+  width: 46%;
+  height: 22%;
+  background: linear-gradient(180deg, color-mix(in oklab, #fffaf0 70%, transparent), transparent);
+  transform: skewX(-34deg);
+  transform-origin: top left;
+  opacity: 0.85;
+}
+.an-panel__sun {
+  position: absolute;
+  right: 12%;
+  top: 14%;
+  width: clamp(3.5rem, 9vw, 6.5rem);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: var(--an-accent);
+  opacity: 0.9;
+}
+.an-panel__lamp-stem {
+  position: absolute;
+  right: 20%;
+  top: 40%;
+  width: 2px;
+  height: 33%;
+  background: var(--an-ink);
+}
+.an-panel__lamp-shade {
+  position: absolute;
+  right: calc(20% - 2.1rem);
+  top: calc(40% - 2.4rem);
+  width: 4.3rem;
+  height: 2.6rem;
+  border-radius: 999px 999px 4px 4px;
+  background: var(--an-ink);
+}
+.an-panel__lamp-glow {
+  position: absolute;
+  right: calc(20% - 5rem);
+  top: calc(40% - 3.2rem);
+  width: 10rem;
+  height: 10rem;
+  border-radius: 50%;
+  background: radial-gradient(closest-side, color-mix(in oklab, #fff3d6 70%, transparent), transparent);
+}
+.an-panel__lamp-base {
+  position: absolute;
+  right: calc(20% - 1.2rem);
+  top: calc(73% - 4px);
+  width: 2.5rem;
+  height: 6px;
+  border-radius: 999px;
+  background: var(--an-ink);
+}
+.an-panel__stool-top {
+  position: absolute;
+  left: 46%;
+  top: 63%;
+  width: 22%;
+  height: 4.2%;
+  border-radius: 999px;
+  background: var(--an-wood);
+  box-shadow: inset 0 -4px 0 var(--an-wood-deep);
+}
+.an-panel__stool-leg {
+  position: absolute;
+  top: 66%;
+  width: 7px;
+  height: 14%;
+  background: var(--an-wood-deep);
+  border-radius: 3px;
+}
+.an-panel__stool-leg--a { left: 49%; transform: rotate(8deg); }
+.an-panel__stool-leg--b { left: 64.5%; transform: rotate(-8deg); }
+.an-panel__vase {
+  position: absolute;
+  left: 53%;
+  top: calc(63% - 3.4rem);
+  width: 1.7rem;
+  height: 3.6rem;
+  border-radius: 40% 40% 30% 30% / 25% 25% 20% 20%;
+  background: var(--an-birch);
+  box-shadow: inset -5px 0 0 color-mix(in oklab, var(--an-ink) 10%, transparent);
+}
+.an-panel__twig {
+  position: absolute;
+  left: calc(53% + 0.8rem);
+  top: calc(63% - 7.5rem);
+  width: 2px;
+  height: 4.4rem;
+  background: var(--an-ink);
+  transform: rotate(14deg);
+  transform-origin: bottom;
+}
+.an-panel__twig::before,
+.an-panel__twig::after {
+  content: '';
+  position: absolute;
+  width: 0.55rem;
+  height: 0.55rem;
+  border-radius: 50%;
+  background: var(--an-accent);
+}
+.an-panel__twig::before { top: 0; left: -3px; }
+.an-panel__twig::after { top: 1.2rem; left: 2px; }
+.an-panel__shadow {
+  position: absolute;
+  left: 44%;
+  top: 79%;
+  width: 28%;
+  height: 3%;
+  border-radius: 50%;
+  background: color-mix(in oklab, var(--an-ink) 14%, transparent);
+  filter: blur(3px);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .an-panel__sun {
+    animation: an-rise 1.6s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+  }
+}
+@keyframes an-rise {
+  from { transform: translateY(18px); opacity: 0; }
+  to { transform: translateY(0); opacity: 0.9; }
+}

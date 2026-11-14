@@ -1,7 +1,7 @@
 import type {Metadata} from 'next';
 import Link from 'next/link';
 import {pages} from '@/lib/pages';
-import {REPO_URL, SITE_URL, STUDIO_URL} from '@/lib/paths';
+import {asset, REPO_URL, SITE_URL, STUDIO_URL} from '@/lib/paths';
 
 export const metadata: Metadata = {
   title: {absolute: 'Landing page gallery | CraftLayer Studio'},
@@ -49,6 +49,17 @@ export default function GalleryIndex() {
             key={p.slug}
             className="group relative flex flex-col gap-3 rounded-2xl border border-[#e4e7ec] bg-white p-7 transition hover:-translate-y-0.5 hover:shadow-[0_18px_40px_-20px_rgb(16_24_40/0.35)] focus-within:outline-3 focus-within:outline-offset-2 focus-within:outline-[#3a50e0] motion-reduce:transition-none motion-reduce:hover:translate-y-0"
           >
+            {/* Decorative: the card's heading link names the page. Static export, so no next/image optimiser. */}
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src={asset(`/shots/${p.slug}.webp`)}
+              alt=""
+              width={800}
+              height={480}
+              loading={i < 3 ? 'eager' : 'lazy'}
+              decoding="async"
+              className="-mx-7 -mt-7 mb-2 block aspect-[5/3] w-[calc(100%+3.5rem)] max-w-none rounded-t-2xl border-b border-[#e4e7ec] object-cover object-top"
+            />
             <span className="font-mono text-xs text-[#3a50e0]">{String(i + 1).padStart(2, '0')}</span>
             <span className="self-start rounded-full border border-current px-2.5 py-0.5 text-[11px] font-bold tracking-wider uppercase">
               Concept demo
