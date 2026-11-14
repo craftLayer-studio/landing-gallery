@@ -41,7 +41,7 @@ export const metadata: Metadata = {
 export default function AtelierNordPage() {
   return (
     <div className={`an-root ${display.variable} ${sans.variable} min-h-screen`}>
-      <ConceptBar brand="Atelier Nord" />
+      <ConceptBar brand="Atelier Nord" slug="atelier-nord" />
       <NavOffCanvas />
       <main id="main" data-an-behind>
         <HeroSplitScreen />

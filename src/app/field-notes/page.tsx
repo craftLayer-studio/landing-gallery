@@ -41,7 +41,7 @@ export const metadata: Metadata = {
 export default function FieldNotesPage() {
   return (
     <div className={`fn-root ${serif.variable} ${mono.variable} min-h-screen`}>
-      <ConceptBar brand="Field Notes Weekly" />
+      <ConceptBar brand="Field Notes Weekly" slug="field-notes" />
       <NavInline />
       <main id="main">
         <HeroQuestion />

@@ -34,7 +34,7 @@ export default function LedgerlinePage() {
       <a href="#main" className="sr-only focus:not-sr-only focus:absolute focus:z-50 focus:m-2 focus:bg-[var(--ll-ink)] focus:px-4 focus:py-2 focus:text-[var(--ll-paper)]">
         Skip to content
       </a>
-      <ConceptBar brand="Ledgerline" />
+      <ConceptBar brand="Ledgerline" slug="ledgerline" />
       <LedgerlineNav />
       <main id="main" tabIndex={-1} className="focus:outline-none">
         <LedgerlineHero />

@@ -1,5 +1,6 @@
 import type {Metadata} from 'next';
 import Link from 'next/link';
+import {contactUrl, templateUrl} from '@/lib/links';
 import {pages} from '@/lib/pages';
 import {asset, REPO_URL, SITE_URL, STUDIO_URL} from '@/lib/paths';
 
@@ -25,9 +26,14 @@ export default function GalleryIndex() {
         <a href={STUDIO_URL} className="font-bold tracking-tight">
           CraftLayer Studio
         </a>
-        <a href={REPO_URL} className="font-medium text-[#3a50e0] underline-offset-4 hover:underline">
-          Source on GitHub
-        </a>
+        <nav aria-label="Studio" className="flex flex-wrap items-center justify-end gap-x-5 gap-y-1">
+          <a href={REPO_URL} className="font-medium text-[#3a50e0] underline-offset-4 hover:underline">
+            Source on GitHub
+          </a>
+          <a href={contactUrl('landing-gallery')} className="font-medium text-[#3a50e0] underline-offset-4 hover:underline">
+            Start a project
+          </a>
+        </nav>
       </header>
 
       <section className="mx-auto max-w-[1200px] pt-16 pb-12 sm:pt-28 sm:pb-16" aria-labelledby="title">
@@ -44,7 +50,9 @@ export default function GalleryIndex() {
       </section>
 
       <ul className="mx-auto grid max-w-[1200px] list-none grid-cols-1 gap-5 p-0 md:grid-cols-2 lg:grid-cols-3">
-        {pages.map((p, i) => (
+        {pages.map((p, i) => {
+          const template = templateUrl(p.slug);
+          return (
           <li
             key={p.slug}
             className="group relative flex flex-col gap-3 rounded-2xl border border-[#e4e7ec] bg-white p-7 transition hover:-translate-y-0.5 hover:shadow-[0_18px_40px_-20px_rgb(16_24_40/0.35)] focus-within:outline-3 focus-within:outline-offset-2 focus-within:outline-[#3a50e0] motion-reduce:transition-none motion-reduce:hover:translate-y-0"
@@ -78,8 +86,18 @@ export default function GalleryIndex() {
                 </li>
               ))}
             </ul>
+            {template ? (
+              // relative z-10 lifts this link above the card's full-area heading link.
+              <a
+                href={template}
+                className="relative z-10 self-start pt-2 font-semibold text-[#3a50e0] underline-offset-4 hover:underline"
+              >
+                Get the animated template →<span className="sr-only"> for {p.name}</span>
+              </a>
+            ) : null}
           </li>
-        ))}
+          );
+        })}
       </ul>
 
       <footer className="mx-auto mt-14 grid max-w-[1200px] gap-2 border-t border-[#e4e7ec] pt-6 text-sm text-[#475467]">

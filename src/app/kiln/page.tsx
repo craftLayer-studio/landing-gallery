@@ -37,7 +37,7 @@ export default function KilnPage() {
       >
         Skip to content
       </a>
-      <ConceptBar brand="Kiln" />
+      <ConceptBar brand="Kiln" slug="kiln" />
       <KilnNav />
       <main id="main" tabIndex={-1} className="focus:outline-none">
         <KilnHero />

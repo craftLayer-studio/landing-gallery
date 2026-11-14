@@ -33,7 +33,7 @@ export const metadata: Metadata = {
 export default function SignalGridPage() {
   return (
     <div className={`${fontVariables} ${styles.root} min-h-screen`}>
-      <ConceptBar brand="Signal Grid" />
+      <ConceptBar brand="Signal Grid" slug="signal-grid" />
       <MegaNav />
       <main id="main" tabIndex={-1} className="focus:outline-none">
         <HeroManifesto />

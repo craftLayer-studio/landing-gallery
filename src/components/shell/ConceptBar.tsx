@@ -1,8 +1,10 @@
 import Link from 'next/link';
+import {contactUrl, templateUrl} from '@/lib/links';
 import {STUDIO_URL} from '@/lib/paths';
 
 /** Required on every page: these are fictional brands, not clients. */
-export function ConceptBar({brand}: {brand: string}) {
+export function ConceptBar({brand, slug}: {brand: string; slug: string}) {
+  const template = templateUrl(slug);
   return (
     // A labelled <aside> is a landmark, so the notice is not orphaned content (axe "region").
     <aside
@@ -20,6 +22,14 @@ export function ConceptBar({brand}: {brand: string}) {
         </a>{' '}
         as a design example. Nothing is sold, booked or sent.
       </span>
+      {template ? (
+        <a className="font-bold text-[#8bddc0] underline underline-offset-2" href={template}>
+          Get the animated template →
+        </a>
+      ) : null}
+      <a className="text-white underline underline-offset-2" href={contactUrl(slug)}>
+        Start a project
+      </a>
       <Link href="/" className="text-white underline underline-offset-2">
         All landing pages
       </Link>

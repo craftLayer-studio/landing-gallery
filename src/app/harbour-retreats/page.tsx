@@ -32,7 +32,7 @@ export const metadata: Metadata = {
 export default function HarbourRetreatsPage() {
   return (
     <div className={`${fontVariables} ${styles.root} min-h-screen`}>
-      <ConceptBar brand="Harbour Retreats" />
+      <ConceptBar brand="Harbour Retreats" slug="harbour-retreats" />
       <div className="lg:grid lg:grid-cols-[15.5rem_minmax(0,1fr)]">
         <MarginalNav />
         <div className="min-w-0">
