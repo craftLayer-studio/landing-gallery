@@ -1,69 +1,91 @@
-import Image from "next/image";
+import type {Metadata} from 'next';
+import Link from 'next/link';
+import {pages} from '@/lib/pages';
+import {REPO_URL, SITE_URL, STUDIO_URL} from '@/lib/paths';
 
-export default function Home() {
+export const metadata: Metadata = {
+  title: {absolute: 'Landing page gallery | CraftLayer Studio'},
+  description:
+    'Six fictional landing pages by CraftLayer Studio for fintech, dev tools, e-commerce, newsletters, travel and AI, built from reusable section archetypes.',
+  alternates: {canonical: `${SITE_URL}/`},
+  openGraph: {
+    title: 'Landing page gallery | CraftLayer Studio',
+    description: 'Six fictional landing pages composed from named, reusable section archetypes.',
+    url: `${SITE_URL}/`,
+    siteName: 'CraftLayer Studio',
+    type: 'website',
+    images: [{url: '/landing-gallery/og.png', width: 1200, height: 630, alt: 'CraftLayer Studio landing page gallery'}],
+  },
+};
+
+export default function GalleryIndex() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert h-5 w-[100px]"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the{" "}
-            <code className="rounded bg-black/[.06] px-1.5 py-0.5 font-mono text-[0.9em] dark:bg-white/[.08]">
-              page.tsx
-            </code>{" "}
-            file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+    <main id="main" className="min-h-screen bg-[#f7f8f5] px-4 pb-16 text-[#101828] sm:px-10">
+      <header className="mx-auto flex max-w-[1200px] items-center justify-between gap-4 border-b border-[#e4e7ec] py-6">
+        <a href={STUDIO_URL} className="font-bold tracking-tight">
+          CraftLayer Studio
+        </a>
+        <a href={REPO_URL} className="font-medium text-[#3a50e0] underline-offset-4 hover:underline">
+          Source on GitHub
+        </a>
+      </header>
+
+      <section className="mx-auto max-w-[1200px] pt-16 pb-12 sm:pt-28 sm:pb-16" aria-labelledby="title">
+        <p className="mb-5 font-mono text-xs tracking-[0.12em] text-[#3a50e0] uppercase">Landing page gallery</p>
+        <h1 id="title" className="max-w-[18ch] text-4xl leading-[1.02] font-bold tracking-[-0.035em] sm:text-7xl">
+          Six landing pages. Every section has a name.
+        </h1>
+        <p className="mt-6 max-w-[64ch] text-base leading-relaxed text-[#475467] sm:text-lg">
+          Each page is a fictional brand assembled from named section archetypes (heroes, pricing, FAQs, calls to
+          action and footers) drawn from a reference library of production patterns, then adapted to the brand. They
+          show how we compose a landing page deliberately instead of reaching for the default three-column template.
+          None of these businesses are real or are CraftLayer clients.
+        </p>
+      </section>
+
+      <ul className="mx-auto grid max-w-[1200px] list-none grid-cols-1 gap-5 p-0 md:grid-cols-2 lg:grid-cols-3">
+        {pages.map((p, i) => (
+          <li
+            key={p.slug}
+            className="group relative flex flex-col gap-3 rounded-2xl border border-[#e4e7ec] bg-white p-7 transition hover:-translate-y-0.5 hover:shadow-[0_18px_40px_-20px_rgb(16_24_40/0.35)] focus-within:outline-3 focus-within:outline-offset-2 focus-within:outline-[#3a50e0] motion-reduce:transition-none motion-reduce:hover:translate-y-0"
           >
-            <Image
-              className="dark:invert h-[14px] w-4"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={14}
-            />
-            Deploy Now
+            <span className="font-mono text-xs text-[#3a50e0]">{String(i + 1).padStart(2, '0')}</span>
+            <span className="self-start rounded-full border border-current px-2.5 py-0.5 text-[11px] font-bold tracking-wider uppercase">
+              Concept demo
+            </span>
+            <h2 className="mt-2 text-3xl leading-tight font-bold tracking-tight">
+              <Link href={p.href} className="after:absolute after:inset-0 after:rounded-2xl focus:outline-none">
+                {p.name}
+              </Link>
+            </h2>
+            <p className="font-semibold text-[#344054]">{p.category}</p>
+            <p className="leading-relaxed text-[#475467]">{p.summary}</p>
+            <ul className="mt-auto flex flex-wrap gap-1.5 pt-3" aria-label="Section archetypes used">
+              {p.archetypes.map(a => (
+                <li key={a} className="rounded border border-[#e4e7ec] px-1.5 py-0.5 font-mono text-[11px] text-[#475467]">
+                  {a}
+                </li>
+              ))}
+            </ul>
+          </li>
+        ))}
+      </ul>
+
+      <footer className="mx-auto mt-14 grid max-w-[1200px] gap-2 border-t border-[#e4e7ec] pt-6 text-sm text-[#475467]">
+        <p>
+          Built with Next.js, React, TypeScript and Tailwind CSS. Section archetypes are adapted from the Inspo MCP
+          reference library. Statically exported to GitHub Pages.
+        </p>
+        <p>
+          <a className="text-[#3a50e0]" href={STUDIO_URL}>
+            craftlayer-studio.github.io
+          </a>{' '}
+          ·{' '}
+          <a className="text-[#3a50e0]" href={REPO_URL}>
+            github.com/craftLayer-studio/landing-gallery
           </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
-    </div>
+        </p>
+      </footer>
+    </main>
   );
 }
